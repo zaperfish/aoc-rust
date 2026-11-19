@@ -44,7 +44,7 @@ pub enum Error {
 macro_rules! solution {
     ($year:expr, $day:expr) => {
         fn main() {
-            aocrust::run($year, $day, part_one, part_two);
+            aoc_rust::run($year, $day, part_one, part_two);
         }
     };
 }

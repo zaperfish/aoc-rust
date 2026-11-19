@@ -2,7 +2,7 @@
 name = "aoc-rust"
 version = "0.1.0"
 edition = "2024"
-description = "One sentence about what it does"
+description = "A tiny ergonomic helper crate for advent-of-code"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/zaperfish/aoc-rust"
 readme = "README.md"
