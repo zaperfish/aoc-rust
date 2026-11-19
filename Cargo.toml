@@ -1,7 +1,12 @@
 [package]
-name = "aocrust"
+name = "aoc-rust"
 version = "0.1.0"
 edition = "2024"
+description = "One sentence about what it does"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/zaperfish/aoc-rust"
+readme = "README.md"
+keywords = ["advent-of-code", "aoc"]
 
 [dependencies]
 clap = { version = "4.6.8", features = ["derive"] }
