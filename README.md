@@ -1,5 +1,7 @@
 # 🎄 aoc-rust
- 
+[![crates.io](https://img.shields.io/crates/v/aoc-rust.svg)](https://crates.io/crates/aoc-rust)
+[![license](https://img.shields.io/crates/l/aoc-rust.svg)](LICENSE)
+
 A tiny, dependency free helper for solving [Advent of Code](https://adventofcode.com) in Rust.
 
 It doesn’t scaffold anything for you: there are no generated files, templates or project layout to adopt. Scaffolding is easy to do with a small script, so the crate leaves it to you. You create your day files yourself, and the crate only adds the convenience around them: running and timing both parts, downloading inputs and submitting answers.
