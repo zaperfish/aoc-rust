@@ -39,19 +39,19 @@ cargo install aoc-cli --version 0.12.0
 
 Everything you need is in two macros:
 
-- **`solution!(year, day)`**\
+- `solution!(year, day)`\
   Turns a file into a runnable day. It generates `main`, which reads the input,
   runs and times `part_one` and `part_two`, prints the answers, and handles the
   `run` and `download` commands.
 
-- **`debug!(...)`**\
+- `debug!(...)`\
   Works like `eprintln!`, but is removed from release builds. Run without
   `--release` to see the output.
 
 ## Commands
 
 ```
-$ cargo run --release --bin day01 -- run --submit
+$ cargo run --bin day01 -- run --example
 ```
 
 ```
@@ -78,3 +78,7 @@ Make sure the directories exist before you start, since the crate doesn't create
 ```sh
 mkdir -p data/inputs data/examples data/puzzles
 ```
+
+## Useful extras
+- Shorten the commands you type with an alias or a function of your shell.
+- TODO: This repo includes small scripts I personally use to scaffold my project.
