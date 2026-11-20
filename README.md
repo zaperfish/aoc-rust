@@ -36,6 +36,9 @@ Add it to the project you solve puzzles in and make sure the aoc-cli is installe
 cargo add aoc-rust
 cargo install aoc-cli --version 0.12.0
 ```
+> [!IMPORTANT]
+> Make sure your session cookie is stored in `~/.adventofcode.session` or set in the
+> `ADVENT_OF_CODE_SESSION` environment variable.
 
 ## Usage
 
