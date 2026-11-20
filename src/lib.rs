@@ -1,7 +1,7 @@
 use std::env;
 use std::fmt::Display;
 use std::path::{Path, PathBuf};
-use std::process::Command;
+use std::process::{Command, Output};
 use std::time::{Duration, Instant};
 
 // ---------------------------------------------------------------------------
@@ -143,39 +143,54 @@ impl CliCommand {
 }
 
 fn download(year: u16, day: u8) -> Result<(), String> {
-    run_aoc_cli(
+    let output = run_aoc_cli_output(
         Command::new("aoc")
             .args(["download", "--quiet", "--overwrite"])
             .args(["--year", &year.to_string()])
             .args(["--day", &day.to_string()])
-            .args(["--input-only", &input_path(day).display().to_string()]),
-    )
+            .args(["--input-only"])
+            .args(["--input-file", &input_path(day).display().to_string()]),
+    )?;
+
+    if output.stderr.is_empty() {
+        println!("Successfully downloaded input for day {day}");
+    } else {
+        return Err(format!(
+            "download failed: {}",
+            String::from_utf8_lossy(&output.stderr).trim()
+        ));
+    }
+
+    Ok(())
 }
 
 fn submit(year: u16, day: u8, part: u8, answer: &str) -> Result<(), String> {
     println!("\nSubmitting {answer} for part {part}:");
-    run_aoc_cli(
+    let _output = run_aoc_cli_output(
         Command::new("aoc")
             .args(["submit", "--quiet"])
             .args(["--year", &year.to_string()])
             .args(["--day", &day.to_string()])
             .arg(part.to_string())
             .arg(answer),
-    )
+    )?;
+    Ok(())
 }
 
-fn run_aoc_cli(cmd: &mut Command) -> Result<(), String> {
-    let status = cmd.status().map_err(|e| {
+fn run_aoc_cli_output(cmd: &mut Command) -> Result<Output, String> {
+    let output = cmd.output().map_err(|e| {
         format!(
-            "couldnt run aoc-cli (is it installed? \"cargo install aoc-cli --version 0.12.0\"): {e}"
+            "couldn't spawn aoc-cli (is it installed? \
+            try `cargo install aoc-cli --version 0.12.0`): {e}"
         )
     })?;
 
-    if !status.success() {
-        return Err(format!("aoc-cli exited with {status}"));
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        return Err(format!("aoc-cli exited with {}: {}", output.status, stderr));
     }
 
-    Ok(())
+    Ok(output)
 }
 
 fn input_path(day: u8) -> PathBuf {
@@ -184,10 +199,6 @@ fn input_path(day: u8) -> PathBuf {
 
 fn example_path(day: u8) -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join(format!("data/examples/day{day:02}.txt"))
-}
-
-fn puzzle_path(day: u8) -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).join(format!("data/puzzles/day{day:02}.md"))
 }
 
 fn get_input(day: u8, example: bool) -> Result<String, String> {
@@ -247,7 +258,7 @@ impl Answers {
     }
 
     fn print(&self, year: u16, day: u8) {
-        println!("\n{year} Day {day}:");
+        println!("{year} Day {day}:");
         match self.part_one {
             Some(ref a) => {
                 println!("  Part 1: {:<20} {:?}", a.value, a.time);
