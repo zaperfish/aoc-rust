@@ -23,16 +23,14 @@ cargo add aoc-rust
 
 This crates API is ver simple and only exposes two simple macros for you to use:
 
-```
-solution!(year, day)
-```
-```
-debug!()
-```
+- **`solution!(year, day)`**\
+  Turns a file into a runnable day. It generates `main`, which reads the input,
+  runs and times `part_one` and `part_two`, prints the answers, and handles the
+  `run` and `download` commands.
 
-`solution!(year, day)` Turns a file into a runnable day. It generates main, which reads the input, runs and times part_one and part_two, prints the answers, and handles the run and download commands.
-
-`debug!()` Works like eprintln!, but is removed from release builds. Run without --release to see the output.
+- **`debug!(...)`**\
+  Works like `eprintln!`, but is removed from release builds. Run without
+  `--release` to see the output.
 
 Each day is its own binary:
  
