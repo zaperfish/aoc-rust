@@ -30,11 +30,10 @@ solution!(year, day)
 debug!()
 ```
 
-'solution!(year, day)' Turns a file into a runnable day. It generates main, which reads the input, runs and times part_one and part_two, prints the answers, and handles the run and download commands.
+`solution!(year, day)` Turns a file into a runnable day. It generates main, which reads the input, runs and times part_one and part_two, prints the answers, and handles the run and download commands.
 
-'debug!()' Works like eprintln!, but is removed from release builds. Run without --release to see the output.
+`debug!()` Works like eprintln!, but is removed from release builds. Run without --release to see the output.
 
- 
 Each day is its own binary:
  
 ```rust
@@ -42,6 +41,7 @@ Each day is its own binary:
 aoc_rust::solution!(2015, 1);
  
 fn part_one(input: &str) -> Option<u64> {
+    debug!("Some debug output");
     Some(input.lines().count() as u64)
 }
  
