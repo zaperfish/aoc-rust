@@ -6,17 +6,31 @@ It doesn’t scaffold anything for you: there are no generated files, templates 
 
 You write part_one and part_two, and one macro does the rest.
 
-Running a day looks like this:
+```rust
+// src/bin/day01.rs
+aoc_rust::solution!(2025, 1);
+ 
+fn part_one(input: &str) -> Option<u64> { None }
+ 
+fn part_two(_input: &str) -> Option<u64> { None }
 ```
-2015 Day 01
+
+Answers can be any type that implements `Display`, so days with text answers
+can return `Option<String>`.
+
+Running a day looks like this:
+
+```
+$ cargo run --release --bin day01 -- run --submit
+
+2025 Day 01
   Part 1: 232                  14.21µs
   Part 2: unsolved
 ```
 
 ## Usage
 
-Add it to the project you solve puzzles in:
-And make sure the aoc-cli is installed:
+Add it to the project you solve puzzles in and make sure the aoc-cli is installed:
  
 ```sh
 cargo add aoc-rust
@@ -33,25 +47,6 @@ Everything you need is in two macros:
 - **`debug!(...)`**\
   Works like `eprintln!`, but is removed from release builds. Run without
   `--release` to see the output.
-
-Each day is its own binary:
- 
-```rust
-// src/bin/day01.rs
-aoc_rust::solution!(2015, 1);
- 
-fn part_one(input: &str) -> Option<u64> {
-    debug!("Some debug output");
-    Some(input.lines().count() as u64)
-}
- 
-fn part_two(_input: &str) -> Option<u64> {
-    None // not solved yet
-}
-```
-
-Answers can be any type that implements `Display`, so days with text answers
-can return `Option<String>`.
 
 ## Commands
 
