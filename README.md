@@ -2,7 +2,7 @@
  
 A tiny, dependency free helper for solving [Advent of Code](https://adventofcode.com) in Rust.
 
-It doesn't scaffold anything for you: there are no generated files, templates or project layout to adopt. You create your day files yourself, and the crate only adds the convenience around them: running and timing both parts, downloading inputs and submitting answers.
+It doesn’t scaffold anything for you: there are no generated files, templates or project layout to adopt. Scaffolding is easy to do with a small script, so the crate leaves it to you. You create your day files yourself, and the crate only adds the convenience around them: running and timing both parts, downloading inputs and submitting answers.
 
 You write part_one and part_two, and one macro does the rest.
 
@@ -16,12 +16,14 @@ Running a day looks like this:
 ## Usage
 
 Add it to the project you solve puzzles in:
+And make sure the aoc-cli is installed:
  
 ```sh
 cargo add aoc-rust
+cargo install aoc-cli --version 0.12.0
 ```
 
-This crates API is ver simple and only exposes two simple macros for you to use:
+Everything you need is in two macros:
 
 - **`solution!(year, day)`**\
   Turns a file into a runnable day. It generates `main`, which reads the input,
