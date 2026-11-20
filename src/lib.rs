@@ -174,6 +174,7 @@ fn submit(year: u16, day: u8, part: u8, answer: &str) -> Result<(), String> {
             .arg(part.to_string())
             .arg(answer),
     )?;
+    println!("{:?}", _output);
     Ok(())
 }
 

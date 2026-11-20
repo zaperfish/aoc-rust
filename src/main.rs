@@ -1,4 +1,4 @@
-aoc_rust::solution!(2015, 2);
+aoc_rust::solution!(2015, 3);
 
 fn part_one(_input: &str) -> Option<u64> {
     debug!("Debug grid");
