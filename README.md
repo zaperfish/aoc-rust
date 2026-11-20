@@ -1,4 +1,4 @@
-# aoc-rust
+# 🎄 aoc-rust
  
 A tiny, dependency free helper for solving [Advent of Code](https://adventofcode.com) in Rust.
 
