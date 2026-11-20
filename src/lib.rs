@@ -61,6 +61,15 @@ enum CliCommand {
     Download {},
 }
 
+const HELP: &str = "\
+Usage: cargo run [--release] --bin <DAY> -- <COMMAND> [OPTIONS]
+
+Commands:
+  run            Run both parts and print the answers
+    --submit     Submit the answer of the highest solved part
+    --example    Use the example input instead of your puzzle input
+  download       Download the puzzle input for the day";
+
 impl Cli {
     fn parse() -> Self {
         match Self::try_parse() {
@@ -95,10 +104,12 @@ impl Cli {
             }
             Some("download") => CliCommand::Download {},
             Some(_) => {
-                return Err("invalid command".into());
+                print!("{HELP}");
+                return Err("".into());
             }
             None => {
-                return Err("invalid command".into());
+                print!("{HELP}");
+                return Err("".into());
             }
         };
 
@@ -137,8 +148,7 @@ fn download(year: u16, day: u8) -> Result<(), String> {
             .args(["download", "--quiet", "--overwrite"])
             .args(["--year", &year.to_string()])
             .args(["--day", &day.to_string()])
-            .args(["--input-file", &input_path(day).display().to_string()])
-            .args(["--puzzle-file", &puzzle_path(day).display().to_string()]),
+            .args(["--input-only", &input_path(day).display().to_string()]),
     )
 }
 

@@ -28,7 +28,7 @@ $ cargo run --release --bin day01 -- run --submit
   Part 2: unsolved
 ```
 
-## Usage
+## Setup
 
 Add it to the project you solve puzzles in and make sure the aoc-cli is installed:
  
@@ -36,6 +36,8 @@ Add it to the project you solve puzzles in and make sure the aoc-cli is installe
 cargo add aoc-rust
 cargo install aoc-cli --version 0.12.0
 ```
+
+## Usage
 
 Everything you need is in two macros:
 
@@ -51,15 +53,13 @@ Everything you need is in two macros:
 ## Commands
 
 ```
-$ cargo run --bin day01 -- run --example
-```
+Usage: cargo run [--release] --bin <DAY> -- <COMMAND> [OPTIONS]
 
-```
-Usage: day01 <COMMAND>
- 
 Commands:
-  run       [--submit] [--example] Run both parts and print the answers
-  download                         Download the puzzle input for the day
+  run            Run both parts and print the answers
+    --submit     Submit the answer of the highest solved part
+    --example    Use the example input instead of your puzzle input
+  download       Download the puzzle input for the day";
 ```
 
 ## Files
@@ -67,18 +67,27 @@ Commands:
 Inputs live next to your `Cargo.toml`:
  
 ```
-data/
-├── inputs/day01.txt     # your puzzle input (downloaded)
-├── examples/day01.txt   # the example from the puzzle text (paste it yourself)
-└── puzzles/day01.md     # the puzzle as md file (downloaded)
+my-adventofcode/
+├── Cargo.toml
+├── src/
+│   └── bin/
+│       ├── day01.rs       # aoc_rust::solution!(2025, 1);
+│       └── day02.rs       # aoc_rust::solution!(2025, 2);
+└── data/
+    ├── inputs/
+    │   ├── day01.txt      # your puzzle input (downloaded)
+    │   └── day02.txt
+    └── examples/
+        ├── day01.txt      # the example from the puzzle text (paste it yourself)
+        └── day02.txt
 ```
 
 Make sure the directories exist before you start, since the crate doesn't create them for you.
 
 ```sh
-mkdir -p data/inputs data/examples data/puzzles
+mkdir -p data/inputs data/examples
 ```
 
-### Hints
+## Hints
 - Shorten the commands you type with an alias or a function of your shell.
 - TODO: This repo includes small scripts I personally use to scaffold my project.
