@@ -79,6 +79,6 @@ Make sure the directories exist before you start, since the crate doesn't create
 mkdir -p data/inputs data/examples data/puzzles
 ```
 
-## Useful extras
+### Hints
 - Shorten the commands you type with an alias or a function of your shell.
 - TODO: This repo includes small scripts I personally use to scaffold my project.
